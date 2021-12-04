@@ -8,8 +8,10 @@ export class AuthService {
     try {
       const result = await axios.post(API + endpoint, { username, password });
       localStorage.setItem("token", "Token " + result.data["key"]);
+      return result.status;
     } catch (error) {
       console.error(error);
+      return error.status;
     }
   }
 

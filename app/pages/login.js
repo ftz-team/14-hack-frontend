@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { AuthService } from "../src/services/Auth";
+import Router from "next/router";
 // Chakra imports
 import {
   Box,
@@ -15,8 +17,23 @@ import {
 } from "@chakra-ui/react";
 // Assets
 
+const authService = new AuthService();
+
+const handleSignIn = async (e) => {
+  e.preventDefault();
+  status = await authService.login(e.target[0].value, e.target[1].value);
+  if (status == 200) {
+    Router.push("/programs");
+  }
+};
 
 function SignIn() {
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      Router.push("/programs");
+    }
+  }, []);
+
   // Chakra color mode
   const titleColor = useColorModeValue("teal.300", "teal.200");
   const textColor = useColorModeValue("gray.400", "white");
@@ -56,7 +73,7 @@ function SignIn() {
             >
               Enter your email and password to sign in
             </Text>
-            <FormControl>
+            <form onSubmit={handleSignIn}>
               <FormLabel ms="4px" fontSize="sm" fontWeight="normal">
                 Email
               </FormLabel>
@@ -92,9 +109,9 @@ function SignIn() {
               </FormControl>
               <Button
                 fontSize="10px"
-                type="submit"
                 bg="teal.300"
                 w="100%"
+                type="submit"
                 h="45"
                 mb="20px"
                 color="white"
@@ -108,7 +125,7 @@ function SignIn() {
               >
                 SIGN IN
               </Button>
-            </FormControl>
+            </form>
             <Flex
               flexDirection="column"
               justifyContent="center"
@@ -134,7 +151,9 @@ function SignIn() {
           right="0px"
         >
           <Box
-            bgImage={"https://malexeum.com/wordpress/wp-content/uploads/2013/11/vulkany-kamchatki.jpg"}
+            bgImage={
+              "https://malexeum.com/wordpress/wp-content/uploads/2013/11/vulkany-kamchatki.jpg"
+            }
             w="100%"
             h="100%"
             bgSize="cover"
