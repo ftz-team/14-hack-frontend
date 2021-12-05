@@ -53,6 +53,7 @@ export const Profile: React.FC = withAuth(() => {
               fontWeight: "bold",
               fontSize: "42px",
               margin: "20px 0 0 40px",
+              paddingTop: "20px",
             }}
           >
             Анкета участника
@@ -65,7 +66,7 @@ export const Profile: React.FC = withAuth(() => {
             backgroundColor: "rgba(255, 255, 255, 0.9)",
             height: "120px",
             borderRadius: "26px",
-            margin: "auto auto -60px auto",
+            margin: "115px auto -60px auto",
             boxShadow: "0px 2px 5.5px rgba(0, 0, 0, 0.02)",
             display: "flex",
           }}
