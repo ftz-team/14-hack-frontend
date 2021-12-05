@@ -5,7 +5,7 @@ import home from '../../../src/assets/img/home.png'
 import { Programs } from "../../components/Programs/Porgrams";
 import { UsersList } from "../../components/UsersList/UsersList";
 
-export const AdminLayout : React.FC = () => {
+export const AdminLayout : React.FC = ({children}) => {
 
     const [activeTab, setActiveTab] = React.useState(0);
 
@@ -24,8 +24,9 @@ export const AdminLayout : React.FC = () => {
                     </NavigationItem>
                 </Navigation>
                 <Content>
-                    {activeTab == 0 && <Programs/>}
-                    {activeTab == 1 && <UsersList/>}
+                    {children ? children:
+                    activeTab == 0 ? <Programs/>:
+                    activeTab == 1 ? <UsersList/> : null  }
                 </Content>
             </MainContainer>
         </>
