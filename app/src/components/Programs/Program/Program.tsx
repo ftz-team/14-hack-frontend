@@ -6,6 +6,7 @@ import { ProgramCard } from "../ProgramCard/ProgramCard"
 import { CardBox, ProgramGrid, StagesBox, StatsBox, UsersBox } from "./Program.styled"
 import DashBoard from '../../../components/PackComponents/src/views/RTL/RTLPage'
 import { UsersTable } from "../../UsersList/UsersTable/UsersTable"
+import Link from "next/link"
 
 export const Program : React.FC = () => {
 
@@ -50,7 +51,11 @@ export const Program : React.FC = () => {
                     <UsersTable/>
                 </UsersBox>
                 <StagesBox>
-                    {useStagesList(false)[1]}
+                    <Link href="./stages" passHref>
+                        <a>
+                            {useStagesList(false)[1]}
+                        </a>
+                    </Link>
                 </StagesBox>
             </ProgramGrid>
         </>
