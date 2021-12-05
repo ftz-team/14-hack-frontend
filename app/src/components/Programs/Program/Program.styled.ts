@@ -35,4 +35,5 @@ export const UsersBox = styled.div`
 
 export const StagesBox = styled.div`
     grid-area: stages;
+    cursor: pointer;
 `
